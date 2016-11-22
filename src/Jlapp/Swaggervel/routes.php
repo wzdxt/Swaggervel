@@ -51,6 +51,10 @@ Route::get(Config::get('swaggervel.api-docs-route'), function() {
     Blade::setEscapedContentTags('{{{', '}}}');
     Blade::setContentTags('{{', '}}');
 
+    //redirect to static file
+    return response()->redirectTo('/vendor/swaggervel/index.html?url='.url(Config::get('swaggervel.doc-route')));
+
+
     //need the / at the end to avoid CORS errors on Homestead systems.
     $response = response()->view('swaggervel::index', array(
         'secure'         => Request::secure(),
